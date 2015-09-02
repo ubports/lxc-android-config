@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: lxc-android-config
 Upstream-Contact:  Oliver Grawert <ogra@ubuntu.com>
-Source: lp:ubuntu/lxc-android-config
+Source: lp:lxc-android-config
 
 Files: *
 Copyright: 2013 Canonical LTD.
