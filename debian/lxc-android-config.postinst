@@ -1,0 +1,43 @@
+#!/bin/sh
+
+set -e
+
+OLDOVERRIDE=/etc/init/lxc-android-fstab.override
+
+if [ "$1" = configure ]; then
+    dpkg-divert --package lxc-android-config --rename --divert \
+        /lib/udev/rules.d/50-firmware.rules.disabled \
+        --remove /lib/udev/rules.d/50-firmware.rules || true
+    dpkg-divert --package lxc-android-config --rename --divert \
+        /lib/udev/rules.d/60-persistent-v4l.rules.disabled \
+        --remove /lib/udev/rules.d/60-persistent-v4l.rules || true
+    dpkg-divert --package lxc-android-config --rename --divert \
+        /lib/udev/rules.d/90-alsa-restore.rules.disabled \
+        --remove /lib/udev/rules.d/90-alsa-restore.rules || true
+    dpkg-divert --package lxc-android-config --rename --divert \
+        /lib/udev/rules.d/90-alsa-ucm.rules.disabled \
+        --remove /lib/udev/rules.d/90-alsa-ucm.rules || true
+
+    DIVERSIONPATH="/var/lib/lxc-android-config/diversions"
+    dpkg-divert --add --local --divert $DIVERSIONPATH/rsyslog.diverted \
+        --rename /etc/logrotate.d/rsyslog || true
+
+    CRONDIR=/etc/cron.daily
+
+    for file in $CRONDIR/apt $CRONDIR/dpkg $CRONDIR/passwd; do
+        div_file="$(echo $file|sed 's/\//_/g')"
+        dpkg-divert --add --local --divert $DIVERSIONPATH/$div_file.diverted \
+            --rename $file || true
+    done
+
+    if [ -e /system/build.prop ]; then
+        device=$(grep ^ro.product.device= /system/build.prop |sed -e 's/.*=//')
+        cp /usr/lib/lxc-android-config/70-$device.rules /lib/udev/rules.d/ || true
+
+        # add device specific hacks and workarounds below
+    fi
+    # erase old override file that was created inside create-fstab script
+    [ -f $OLDOVERRIDE ] && rm -f $OLDOVERRIDE
+fi
+
+#DEBHELPER#

@@ -1,0 +1,15 @@
+# udev - device node and kernel event manager
+#
+# The udev daemon receives events from the kernel about changes in the
+# /sys filesystem and manages the /dev filesystem.
+
+description     "device node and kernel event manager"
+
+start on (android
+          and stopped lxc-android-boot)
+stop on runlevel [06]
+
+expect fork
+respawn
+
+exec /lib/systemd/systemd-udevd --daemon

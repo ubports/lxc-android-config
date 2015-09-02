@@ -1,0 +1,23 @@
+/var/log/syslog {
+    # don't use time based rotation, but size-based
+    size 20M
+    # do not keep old files at all
+    rotate 0
+    # don't use compression
+    nocompress
+    postrotate
+        service rsyslog reload >/dev/null 2>&1 || true
+    endscript
+}
+
+/var/log/auth.log {
+    # don't use time based rotation, but size-based
+    size 10M
+    # do not keep old files at all
+    rotate 0
+    # don't use compression
+    nocompress
+    postrotate
+        service rsyslog reload >/dev/null 2>&1 || true
+    endscript
+}

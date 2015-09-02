@@ -1,0 +1,19 @@
+Source: lxc-android-config
+Section: utils
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends: debhelper (>= 9), dh-systemd
+Standards-Version: 3.9.6
+
+Package: lxc-android-config
+Architecture: all
+Multi-Arch: foreign
+Depends: lxc (>= 1.1.0~alpha2-0ubuntu1), cgmanager, debianutils, ${misc:Depends}
+Breaks: ubuntu-touch-session (<< 0.107), powerd (<< 0.14-0ubuntu1)
+Recommends: ofono
+Description: configuration to fire up an ubuntu-touch android container
+ This package contains the scripts to boot an Ubuntu Touch device.
+ .
+ After booting the Ubuntu Touch rootfs upstart will fire up a container
+ using a /boot/android-ramdisk.img shipped by the Ubuntu Touch android
+ system image as the root filesystem.

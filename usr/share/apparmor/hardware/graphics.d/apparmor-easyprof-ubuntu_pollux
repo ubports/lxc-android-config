@@ -1,0 +1,4 @@
+# Sony Xperia Tablet Z (pollux)
+  /dev/kgsl-3d0 rw,
+  /dev/ion rw,
+  /sys/devices/system/soc/soc0/id r,

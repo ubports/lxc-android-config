@@ -1,0 +1,51 @@
+#!/usr/bin/python3
+
+import os
+import socket
+import dbus
+import subprocess
+import sys
+from urllib.parse import urlparse
+from syslog import syslog
+
+if len(sys.argv) >= 3 and sys.argv[2] == "down":
+	os._exit(0)
+
+connection = os.getenv('CONNECTION_ID')
+modem_path = os.getenv('DEVICE_IFACE')
+net_device = os.getenv('DEVICE_IP_IFACE')
+
+if modem_path is None or connection is None:
+	syslog("Cannot add proxy route, empty parameters")
+	os._exit(0)
+
+# Exit if it is not an ofono connection
+if not connection.startswith('/'):
+	os._exit(0)
+
+syslog("Adding route for proxy for connection {} on {} ({})".format(connection, modem_path, net_device))
+
+try:
+	context_id = connection.split('/')[2]
+
+	bus = dbus.SystemBus()
+
+	context_path = "/{}/{}".format(modem_path, context_id)
+
+	ofono_ril = dbus.Interface(bus.get_object('org.ofono', context_path),
+	                           "org.ofono.ConnectionContext")
+
+	properties = ofono_ril.GetProperties()
+
+	mobile_settings = properties["Settings"]
+
+	if "Proxy" in mobile_settings and mobile_settings["Proxy"]:
+		routed_ip = mobile_settings["Proxy"]
+	else:
+		raise EnvironmentError("Settings[Proxy] for {} missing".format(context_path))
+
+	syslog("{}: adding route for {} via {}".format(modem_path, routed_ip, net_device))
+	subprocess.call(["ip", "route", "add", routed_ip, "dev", net_device, "proto", "static"])
+except Exception as e:
+	syslog("failed to add route: {}".format(e))
+	os._exit(0)

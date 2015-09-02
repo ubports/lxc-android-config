@@ -1,0 +1,5 @@
+  /dev/pvr_sync rw,
+  /proc/m4u rw,
+  /proc/mtk_cmdq r,
+  /proc/mtk_mira r,
+  /proc/ged r,

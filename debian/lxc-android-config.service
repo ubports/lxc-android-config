@@ -1,0 +1,13 @@
+[Unit]
+Description=LXC Android Config and Container Initialization
+Requires=cgmanager.service
+After=cgmanager.service
+
+[Service]
+ExecStartPre=/usr/lib/lxc-android-config/copy-udev-unflipped
+ExecStart=/usr/bin/lxc-start -n android -F -- /init
+ExecStartPost=/usr/lib/lxc-android-config/lxc-android-ready
+ExecStop=/usr/bin/lxc-stop -n android -k
+
+[Install]
+WantedBy=multi-user.target

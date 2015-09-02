@@ -1,0 +1,10 @@
+[Unit]
+Description=Wait for rild in the Android container to become ready
+After=lxc-android-config.service
+
+[Service]
+Type=oneshot
+TimeoutStartSec=80
+# loop and then exit, if rild isnt up after 80 sec
+# it is likely not starting at all (or not there)
+ExecStart=/bin/sh -ec 'while [ ! -e /dev/socket/rild ]; do sleep 0.1; done'

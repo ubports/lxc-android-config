@@ -1,0 +1,57 @@
+#! /bin/sh
+
+NMCONF=/etc/NetworkManager/system-connections/tethering
+
+enable(){
+    MAC="$(ip -o link show rndis0 |sed -e 's/^.*ether //'|cut -d' ' -f1)"
+    UUID=ca16a21d-7d8b-4b49-926e-"$(echo $MAC|sed -e 's/://g')"
+    STAMP=$(date +%s)
+
+    if [ ! -e $NMCONF ];then
+        cat << EOF >$NMCONF
+[802-3-ethernet]
+duplex=full
+mac-address=$MAC
+
+[connection]
+id=tethering
+uuid=$UUID
+type=802-3-ethernet
+timestamp=$STAMP
+
+[ipv6]
+method=auto
+
+[ipv4]
+method=shared
+may-fail=false
+EOF
+    else
+        sed -i s/^mac-address=.*/mac-address=${MAC}/ $NMCONF
+        sed -i s/^uuid=.*/uuid=${UUID}/ $NMCONF
+        sed -i s/^timestamp=.*/timestamp=${STAMP}/ $NMCONF
+    fi
+
+    chmod 0600 $NMCONF
+    sleep 2
+    nmcli c reload
+    nmcli c up id tethering
+}
+
+disable(){
+    nmcli c down id tethering || true
+    rm $NMCONF || true
+}
+
+case $1 in
+    enable)
+        enable
+        ;;
+    disable)
+        disable
+        ;;
+    *)
+        echo "need an argument (enable|disable)"
+        exit 0
+        ;;
+esac

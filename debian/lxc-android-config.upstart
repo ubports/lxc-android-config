@@ -1,0 +1,44 @@
+# lxc-android-config - LXC Android Config and Container Initialization
+#
+# Configure and initialize the Android container for Ubuntu Touch
+
+description	"lxc android config and container initialization"
+
+start on cgmanager-ready
+stop on runlevel [06]
+
+emits android
+
+console none
+
+exec lxc-start -n android -F -- /init
+
+post-start script
+    if [ ! -d /dev/cpuctl ] && [ -d /sys/fs/cgroup/cpu ]; then
+        mkdir /dev/cpuctl
+        mount -t cgroup -o cpu none /sys/fs/cgroup/cpu
+    fi
+
+    lxc-wait -n android -s RUNNING -t 30
+    containerpid="$(lxc-info -n android -p -H)"
+    if [ -n "$containerpid" ]; then
+        while true; do
+            [ -f /proc/$containerpid/root/dev/.coldboot_done ] && break
+            sleep 0.1
+        done
+
+        # Allow custom properties before announcing that the boot is completed
+        if [ -f /custom/custom.prop ]; then
+            while [ ! -e /dev/socket/property_service ]; do sleep 0.1; done
+            grep "^custom\." /custom/custom.prop | sed 's/=/ /' | while read property value; do
+                setprop $property $value
+            done
+        fi
+
+        initctl emit android
+    else
+        stop; exit 1
+    fi
+end script
+
+pre-stop exec lxc-stop -n android -k

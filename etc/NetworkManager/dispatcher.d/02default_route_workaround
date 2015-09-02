@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+ip route flush proto boot

@@ -1,0 +1,19 @@
+# NOTE: This disables renaming of certain network interfaces we use on
+# Ubuntu Touch devices for mobile data connectivity. Those interfaces
+# are used by their name elsewhere and can't be easily automatically
+# named differently.
+#
+# This currently affects the following devices:
+#
+# - Nexus 4 (mako)
+# - Nexus 7 2013 (flo) (with mobile support)
+#
+# However it will be used on other devices as well where the network
+# interfaces for mobile data connectivty are prefixed with rmnet_*
+
+[Match]
+OriginalName=rmnet_*
+
+[Link]
+NamePolicy=kernel
+MACAddressPolicy=persistent

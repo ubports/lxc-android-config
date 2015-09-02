@@ -1,0 +1,100 @@
+#!/bin/sh
+
+set -e
+
+mountpoints="system data factory persist"
+
+syslabels="FACTORYFS APP system SYSTEM"
+datalabels="DATAFS UDA userdata USERDATA"
+factorylabels="EFS efs"
+persistlabels="persist"
+
+mountopts="noatime,nodiratime,errors=remount-ro"
+romountopts="ro,${mountopts}"
+bindmountopts="ro,bind"
+persistopts="rw,nosuid,nodev,relatime,nodelalloc,data=ordered"
+
+if grep -q "^[a-z0-9/]*./system" /etc/fstab || \
+    grep -q "^[a-z0-9/]*./data" /etc/fstab; then
+    exit 0
+fi
+
+tmpfile=$(mktemp /tmp/fstab.XXX)
+
+cleanup()
+{
+    case $? in
+                0)
+                        mv $tmpfile /etc/fstab
+                        chmod 644 /etc/fstab
+                        echo "success"
+                        ;;
+                *)
+                        rm -rf $tmpfile
+                        echo "failed"
+                        ;;
+        esac
+}
+trap cleanup EXIT INT QUIT ILL KILL SEGV TERM
+
+# logging
+log=/var/log/lxc-android-boot.log
+exec 3>&1 4>&2 >$log 2>&1
+
+# prepare working file
+cp /etc/fstab $tmpfile
+echo >>$tmpfile
+
+
+for mount in $mountpoints; do
+        path=$diskpath
+        fs="ext4"
+        part=""
+
+        # make sure the mountpoint exists at all
+        [ -e "/$mount" ] || mkdir -p /$mount
+
+        # different options per mountpioint
+        case $mount in
+                system)
+                        labels=$syslabels
+                        options=$romountopts
+                        ;;
+                data)
+                        labels=$datalabels
+                        options=$mountopts
+                        ;;
+                factory)
+                        labels=$factorylabels
+                        options=$romountopts
+                        ;;
+                persist)
+                        labels=$persistlabels
+                        options=$persistopts
+                        ;;
+        esac
+
+        disk=""
+        for partname in $labels; do
+            diskpaths=$(find /dev -type l -name ${partname}|head -1)
+            for diskpath in $diskpaths; do
+                    disk=$(readlink -f ${diskpath})
+                    [ -b "$disk" ] && break
+            done
+        done
+        case $diskpath in
+            *EFS)
+                mount="efs"
+                ;;
+        esac
+        if [ -n "$disk" ]; then
+            echo "# added by lxc-android-boot for /$mount" >>$tmpfile
+            echo "$disk\t/$mount\t$fs\t$options\t0\t0" >>$tmpfile
+        fi
+done
+
+if grep -q "^[a-z0-9/]*./system" $tmpfile; then
+    [ -e "/vendor" ] || mkdir -p /vendor
+    echo "# added by lxc-android-boot for /vendor" >>$tmpfile
+    echo "/system/vendor\t/vendor\tauto\t$bindmountopts\t0\t0" >>$tmpfile
+fi

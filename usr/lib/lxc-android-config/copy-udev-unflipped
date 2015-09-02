@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+# Read-only flipped model doesn't need all this
+[ -d /android ] && exit 0
+
+/usr/lib/lxc-android-config/update-fstab
+grep -q " /data" /proc/mounts 2>/dev/null || mount /data
+grep -q " /system" /proc/mounts 2>/dev/null || mount /system
+grep -q " /vendor" /proc/mounts 2>/dev/null || mount /vendor
+grep -q " /persist" /proc/mounts 2>/dev/null || mount /persist || true
+[ -e /lib/modules ] || ln -s /system/lib/modules /lib/modules
+device=$(grep ^ro.product.device= /system/build.prop |sed -e 's/.*=//')
+[ -e /lib/udev/rules.d/70-$device.rules ] || \
+    cp /usr/lib/lxc-android-config/70-$device.rules /lib/udev/rules.d/

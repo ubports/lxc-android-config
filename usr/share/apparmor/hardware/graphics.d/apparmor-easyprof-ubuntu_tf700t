@@ -1,0 +1,7 @@
+  /dev/knvmap rw,
+  /dev/nvmap rw,
+  /dev/nvhost-* rw,
+  /dev/tegra_sema rw,
+  /dev/tegra_avpchannel rw,
+  /sys/module/nvhost/parameters/* r,
+  /sys/module/fuse/parameters/tegra* r,

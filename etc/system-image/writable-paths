@@ -1,0 +1,63 @@
+# 1st column: Mount point
+# 2nd column: Path relative to root of persistent storage (or auto)
+# 3rd column: type => persistent|synced|temporary
+# 4th column: action => none|transition (transition requires persistent)
+# 5th column: mount flags
+
+/android/data                           android-data            persistent  none        none
+/etc/NetworkManager/system-connections  auto                    persistent  none        none
+/home                                   user-data               persistent  transition  none
+/media                                  auto                    temporary   none        defaults
+/opt/click.ubuntu.com                   auto                    persistent  transition  none
+/tmp                                    none                    temporary   none        defaults
+/var/crash                              auto                    persistent  none        none
+/var/lib/AccountsService/users          auto                    persistent  none        none
+/var/lib/dbus                           auto                    persistent  none        none
+/var/lib/extrausers                     auto                    persistent  transition  none
+/var/lib/logrotate                      auto                    persistent  none        none
+/var/lib/NetworkManager                 auto                    persistent  none        none
+/var/lib/ofono                          auto                    persistent  none        none
+/var/lib/PackageKit                     auto                    persistent  none        none
+/var/lib/bluetooth                      auto                    persistent  none        none
+/var/lib/lightdm                        auto                    persistent  none        none
+/var/lib/lightdm-data                   auto                    persistent  none        none
+/var/lib/sudo                           auto                    temporary   none        defaults,mode=0700
+/var/lib/system-image                   auto                    persistent  none        none
+/var/lib/upower                         auto                    persistent  none        none
+/var/lib/usermetrics                    auto                    persistent  none        none
+/var/lib/ubuntu-location-service        auto                    persistent  none        none
+/var/log                                auto                    persistent  transition  none
+# ufw
+/etc/default/ufw                        auto                    persistent  transition  none
+/etc/ufw                                auto                    persistent  transition  none
+/lib/ufw/user6.rules                    auto                    persistent  transition  none
+/lib/ufw/user.rules                     auto                    persistent  transition  none
+# apparmor cache is pregenerated in the image builds
+/etc/apparmor.d/cache                   auto                    persistent  transition  none
+# needed by click-apparmor - use transition since some core apps are
+# pre-installed on the image
+/var/cache/apparmor                     auto                    synced      none        none
+/var/lib/apparmor                       auto                    synced      none        none
+# for a writable dconf db used by customization
+/custom/etc/dconf                       auto                    persistent  none        none
+# ssh
+/etc/ssh                                auto                    persistent  transition  none
+/etc/init/ssh.override                  auto                    persistent  transition  none
+# used for various writable files (timezone, localtime, ...)
+/etc/writable                           auto                    synced      none        none
+# ureadahead
+/var/lib/ureadahead                     auto                    persistent  transition  none
+# apport
+/var/lib/apport                         auto                    persistent  transition  none
+# allow us to disable apport as it slows down image
+/etc/default/apport                     auto                    persistent  none        none
+# needed for rfkill persistance
+/var/lib/rfkill                         auto                    persistent  transition  none
+# needed for urfkill persistance
+/var/lib/urfkill                        auto                    persistent  transition  none
+# needed for usb tethering
+/var/lib/misc                           auto                    persistent  transition  none
+# whoopsie
+/var/lib/whoopsie                       auto                    persistent  transition  none
+# needed to persist ntp enabled/disabled
+/etc/network/if-up.d                    auto                    persistent  transition  none
