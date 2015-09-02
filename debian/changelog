@@ -1,8 +1,12 @@
-lxc-android-config (0.230-0ubuntu1) UNRELEASED; urgency=medium
+lxc-android-config (0.230+15.10.20150902.1-0ubuntu1) wily; urgency=medium
 
+  [ Simon Fels ]
   * Rebuild for switching package building to citrain.
 
- -- Simon Fels <simon.fels@canonical.com>  Wed, 02 Sep 2015 10:34:53 +0200
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 02 Sep 2015 09:21:06 +0000
 
 lxc-android-config (0.229) wily; urgency=medium
 
