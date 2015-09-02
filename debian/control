@@ -2,15 +2,24 @@ Source: lxc-android-config
 Section: utils
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-Build-Depends: debhelper (>= 9), dh-systemd
+Build-Depends: debhelper (>= 9),
+               dh-systemd,
 Standards-Version: 3.9.6
+# if you don't have have commit access to this branch but would like to upload
+# directly to Ubuntu, don't worry: your changes will be merged back into the
+# upstream branch
+Vcs-Bzr: lp:lxc-android-config
 
 Package: lxc-android-config
 Architecture: all
 Multi-Arch: foreign
-Depends: lxc (>= 1.1.0~alpha2-0ubuntu1), cgmanager, debianutils, ${misc:Depends}
-Breaks: ubuntu-touch-session (<< 0.107), powerd (<< 0.14-0ubuntu1)
-Recommends: ofono
+Depends: cgmanager,
+         debianutils,
+         lxc (>= 1.1.0~alpha2-0ubuntu1),
+         ${misc:Depends},
+Breaks: powerd (<< 0.14-0ubuntu1),
+        ubuntu-touch-session (<< 0.107),
+Recommends: ofono,
 Description: configuration to fire up an ubuntu-touch android container
  This package contains the scripts to boot an Ubuntu Touch device.
  .
