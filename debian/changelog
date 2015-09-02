@@ -1,4 +1,4 @@
-lxc-android-config (0.230) UNRELEASED; urgency=medium
+lxc-android-config (0.230-0ubuntu1) UNRELEASED; urgency=medium
 
   * Rebuild for switching package building to citrain.
 
