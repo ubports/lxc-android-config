@@ -59,5 +59,6 @@
 /var/lib/misc                           auto                    persistent  transition  none
 # whoopsie
 /var/lib/whoopsie                       auto                    persistent  transition  none
+/etc/init/whoopsie.override             auto                    persistent  transition  none
 # needed to persist ntp enabled/disabled
 /etc/network/if-up.d                    auto                    persistent  transition  none
