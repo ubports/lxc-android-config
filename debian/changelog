@@ -1,3 +1,10 @@
+lxc-android-config (0.230+15.10.20150910-0ubuntu1) wily; urgency=medium
+
+  * Add whoopsie.override to writable-paths and pre-create it so that we
+    can disable whoopsie on r-o systems (LP: #1437633)
+
+ -- Iain Lane <iain@orangesquash.org.uk>  Thu, 10 Sep 2015 11:20:02 +0000
+
 lxc-android-config (0.230+15.10.20150902.1-0ubuntu1) wily; urgency=medium
 
   [ Simon Fels ]
