@@ -1,4 +1,0 @@
-# We're overriding the startup command here in order to load a Touch specific
-# configuration for the Bluetooth daemon as there are things like the device class which
-# we have to adjust.
-exec /usr/sbin/bluetoothd -c /etc/bluetooth/touch.conf -E

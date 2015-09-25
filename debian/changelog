@@ -1,6 +1,8 @@
 lxc-android-config (0.230+15.10.20150924-0ubuntu1) UNRELEASED; urgency=medium
 
-  * Enable experimental functionality in bluetoothd to get GATT support
+  * Drop bluetooth override upstart job configuration. We don't need a
+    configuration file anymore as we will do this completely at runtime
+    which automatically detected whatever we need.
 
  -- Simon Fels <simon.fels@canonical.com>  Thu, 24 Sep 2015 19:34:07 +0200
 
