@@ -14,7 +14,7 @@ pre-start script
     # don't start in containers
     /bin/running-in-container && exit 0
 
-    # Only enable if crash file generation if autoreport is enabled
+    # Only enable crash file generation if autoreport is enabled (LP: #1494442)
     [ -e /var/lib/apport/autoreport ] || exit 0
 
     mkdir -p -m 1777 /var/crash
