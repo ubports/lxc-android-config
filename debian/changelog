@@ -1,3 +1,11 @@
+lxc-android-config (0.230+15.10.20150930.2-0ubuntu1) wily; urgency=medium
+
+  * Configure autoreport of crashes for all channels other than stable.
+    Only enable if crash file generation if autoreport is enabled. (LP:
+    #1494442)
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Wed, 30 Sep 2015 18:12:06 +0000
+
 lxc-android-config (0.230+15.10.20150910-0ubuntu1) wily; urgency=medium
 
   * Add whoopsie.override to writable-paths and pre-create it so that we
