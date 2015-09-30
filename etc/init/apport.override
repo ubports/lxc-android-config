@@ -14,8 +14,6 @@ pre-start script
     # don't start in containers
     /bin/running-in-container && exit 0
 
-    #. /etc/default/apport
-    #[ "$enabled" = "1" ] || [ "$force_start" = "1" ] || exit 0
     # Only enable if crash file generation if autoreport is enabled
     [ -e /var/lib/apport/autoreport ] || exit 0
 
