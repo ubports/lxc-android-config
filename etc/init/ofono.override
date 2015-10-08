@@ -9,4 +9,4 @@ respawn
 env OFONO_RIL_DEVICE=ril
 env OFONO_RIL_NUM_SIM_SLOTS=1
 
-exec ofonod -P stktest,provision,sap,udev,dun,smart,hfp_hf_bluez5,dun_gw_bluez5
+exec ofonod -P stktest,provision,sap,udev,dun,smart,hfp_bluez5,dun_gw_bluez5
