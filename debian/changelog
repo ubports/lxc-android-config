@@ -3,6 +3,9 @@ lxc-android-config (0.230+15.10.20151005-0ubuntu1) UNRELEASED; urgency=medium
   * Drop bluetooth override upstart job configuration. We don't need a
     configuration file anymore as we will do this completely at runtime
     which automatically detected whatever we need.
+  * Also set host chassis type for Android based platforms on startup
+    via hostnamectl. The form factor is read from the ubuntu-touch-session
+    configuration.
 
  -- Simon Fels <simon.fels@canonical.com>  Thu, 24 Sep 2015 19:34:07 +0200
 
