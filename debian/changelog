@@ -1,3 +1,10 @@
+lxc-android-config (0.230+15.10.20151014-0ubuntu1) wily; urgency=medium
+
+  * work around the apport.override job not being considered at boot on
+    some devices (LP: #1505302)
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Wed, 14 Oct 2015 13:48:59 +0000
+
 lxc-android-config (0.230+15.10.20150930.2-0ubuntu1) wily; urgency=medium
 
   * Configure autoreport of crashes for all channels other than stable.
