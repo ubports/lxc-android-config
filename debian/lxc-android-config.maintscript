@@ -1,3 +1,6 @@
 rm_conffile /etc/init/lxc-android-fstab.conf 0.38~
 rm_conffile /etc/init/network-manager.override 0.167~
 rm_conffile /etc/rsyslog.d/45-binder.conf 0.44~
+rm_conffile /etc/init/bluetooth.override 0.230+15.10.20150930.2-0ubuntu1
+rm_conffile /etc/bluetooth/touch.conf 0.230+15.10.20150930.2-0ubuntu1
+rm_conffile /etc/init/set.pretty-hostname.conf 0.230+15.10.20150930.2-0ubuntu1
