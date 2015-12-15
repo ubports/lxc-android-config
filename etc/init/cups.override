@@ -1,4 +1,4 @@
 # cups - CUPS Printing spooler and server
 # socket activation overrides for touch
 start on socket PROTO=inet PORT=631 ADDR=127.0.0.1
-exec /usr/sbin/cupsd -f -x 30
+exec /usr/sbin/cupsd -f
