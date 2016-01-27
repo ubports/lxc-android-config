@@ -1,4 +1,8 @@
 # cups - CUPS Printing spooler and server
-# socket activation overrides for touch
+# overrides for touch
+# socket activation
 start on socket PROTO=inet PORT=631 ADDR=127.0.0.1
-exec /usr/sbin/cupsd -f
+# do not respawn when cupsd shuts down by itself
+normal exit 0
+# start cupsd in auto-shutdown mode
+exec /usr/sbin/cupsd -f -l

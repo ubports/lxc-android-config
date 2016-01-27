@@ -1,0 +1,4 @@
+# avahi-daemon - mDNS/DNS-SD daemon
+# overrides for touch
+# do not start avahi-daemon on boot
+manual

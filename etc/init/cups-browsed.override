@@ -1,0 +1,9 @@
+# cups-browsed - Bonjour remote printer browsing daemon
+# overrides for touch
+# do not start cups-browsed on boot
+manual
+# do not respawn when cups-browsed shuts down by itself
+normal exit 0
+# start cups-browsed in auto-shutdown mode, creating queues for native IPP
+# network printers, and using IPv4 IPs to reference remote printers
+exec /usr/sbin/cups-browsed --autoshutdown=avahi -o IPBasedDeviceURIs=IPv4 -o CreateIPPPrinterQueues=Yes
