@@ -1,3 +1,12 @@
+lxc-android-config (0.230+16.04.20160328-0ubuntu1) xenial; urgency=medium
+
+  [ Till Kamppeter ]
+  * Removed the "-x 30" from the cupsd command line of
+    /etc/init/cups.override, as current cupsd does not support this
+    option any more.
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Mon, 28 Mar 2016 20:50:43 +0000
+
 lxc-android-config (0.230+16.04.20151112-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]
