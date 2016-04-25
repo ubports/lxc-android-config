@@ -12,6 +12,7 @@
 /tmp                                    none                    temporary   none        defaults
 /var/crash                              auto                    persistent  none        none
 /var/lib/AccountsService/users          auto                    persistent  none        none
+/var/lib/aethercast                     auto                    persistent  none        none
 /var/lib/dbus                           auto                    persistent  none        none
 /var/lib/extrausers                     auto                    persistent  transition  none
 /var/lib/logrotate                      auto                    persistent  none        none
