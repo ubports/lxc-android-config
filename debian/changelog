@@ -1,3 +1,10 @@
+lxc-android-config (0.230+16.04.20160519-0ubuntu1) xenial; urgency=medium
+
+  * open ther permission /dev/seiren for mediascanner and media-hub-
+    server for Turbo
+
+ -- Alex Tu <ci-train-bot@canonical.com>  Thu, 19 May 2016 07:26:25 +0000
+
 lxc-android-config (0.230+16.04.20160425-0ubuntu1) xenial; urgency=medium
 
   * Add state directory for aethercast as writable path
