@@ -1,3 +1,9 @@
+lxc-android-config (0.230+16.10.20160602-0ubuntu1) yakkety; urgency=medium
+
+  * Add state directory for biometryd-meizu-fp-reader.
+
+ -- Thomas Voß <thomas.voss@canonical.com>  Thu, 02 Jun 2016 09:33:04 +0000
+
 lxc-android-config (0.230+16.04.20160519-0ubuntu1) xenial; urgency=medium
 
   * open ther permission /dev/seiren for mediascanner and media-hub-
