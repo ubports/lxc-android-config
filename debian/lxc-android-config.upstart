@@ -2,21 +2,23 @@
 #
 # Configure and initialize the Android container for Ubuntu Touch
 
-description	"lxc android config and container initialization"
+description "lxc android config and container initialization"
 
-start on cgmanager-ready
+start on cgmanager-ready and started cgroup-lite
 stop on runlevel [06]
 
-emits android
+pre-start script
+    if [ ! -d /sys/fs/cgroup/systemd ]; then
+        mkdir -p /sys/fs/cgroup/systemd
+        mount -t cgroup cgroup /sys/fs/cgroup/systemd -o name=systemd
+    fi
+end script
 
-console none
-
-exec lxc-start -n android -F -- /init
+exec lxc-start -n android -d -- /init
 
 post-start script
     if [ ! -d /dev/cpuctl ] && [ -d /sys/fs/cgroup/cpu ]; then
-        mkdir /dev/cpuctl
-        mount -t cgroup -o cpu none /sys/fs/cgroup/cpu
+        ln -s /sys/fs/cgroup/cpu /dev/cpuctl
     fi
 
     lxc-wait -n android -s RUNNING -t 30
@@ -33,6 +35,13 @@ post-start script
             grep "^custom\." /custom/custom.prop | sed 's/=/ /' | while read property value; do
                 setprop $property $value
             done
+        fi
+
+        # Hide all the cgroups again
+        stop cgroup-lite
+        if [ -d /sys/fs/cgroup/systemd ]; then
+            umount /sys/fs/cgroup/systemd
+            rmdir /sys/fs/cgroup/systemd
         fi
 
         initctl emit android
