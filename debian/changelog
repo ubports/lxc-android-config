@@ -1,3 +1,11 @@
+lxc-android-config (0.230+16.10.20160616-0ubuntu1) yakkety; urgency=medium
+
+  [ Ondrej Kubik ]
+  * Updating lxc-android-config to work with new lxc v2.0. This fixes
+    boot of devel-proposed (Xenial) channel (LP: #1551150)
+
+ -- Łukasz Zemczak <lukasz.zemczak@canonical.com>  Thu, 16 Jun 2016 13:38:18 +0000
+
 lxc-android-config (0.230+16.10.20160602-0ubuntu1) yakkety; urgency=medium
 
   * Add state directory for biometryd-meizu-fp-reader.
