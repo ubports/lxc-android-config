@@ -1,3 +1,19 @@
 #!/bin/sh -e
 
-ip route flush proto boot
+# This script is used by Touch to ensure that the routing table
+# is cleared prior to connection activation, so that NM ends
+# up in control of the table.  This was done as certain
+# rild implementations actually would configure the routing
+# table after activating a mobile data call.
+#
+# TODO: add extra logic so that this doesn't run for eth*
+# devices and/or status=vpn-* operations.
+
+interface=$1
+status=$2
+
+if [ $status != "hostname" ] 
+  then
+    logger "02default_route_workaround: ($interface): $status: flushing routing table (proto boot)"
+    ip route flush proto boot
+fi
