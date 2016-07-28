@@ -1,3 +1,10 @@
+lxc-android-config (0.230+16.10.20160728-0ubuntu1) yakkety; urgency=medium
+
+  * Update NM routing dispatcher script to fix emulator networking ( LP:
+    #1587808). (LP: #1587808)
+
+ -- Tony Espy <espy@canonical.com>  Thu, 28 Jul 2016 19:44:02 +0000
+
 lxc-android-config (0.230+16.10.20160616-0ubuntu1) yakkety; urgency=medium
 
   [ Ondrej Kubik ]
