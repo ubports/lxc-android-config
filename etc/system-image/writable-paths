@@ -25,6 +25,7 @@
 /var/lib/lightdm-data                   auto                    persistent  none        none
 /var/lib/sudo                           auto                    temporary   none        defaults,mode=0700
 /var/lib/system-image                   auto                    persistent  none        none
+/var/lib/systemd                        auto                    synced      none        none
 /var/lib/upower                         auto                    persistent  none        none
 /var/lib/usermetrics                    auto                    persistent  none        none
 /var/lib/ubuntu-location-service        auto                    persistent  none        none
