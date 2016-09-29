@@ -1,7 +1,8 @@
 [Unit]
 Description=LXC Android Config and Container Initialization
 Requires=cgmanager.service
-After=cgmanager.service
+Wants=upstart-local-bridge.service
+After=cgmanager.service upstart-local-bridge.service
 
 [Service]
 ExecStartPre=/usr/lib/lxc-android-config/copy-udev-unflipped
