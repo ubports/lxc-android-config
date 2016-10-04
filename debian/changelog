@@ -1,3 +1,15 @@
+lxc-android-config (0.230+16.10.20161004-0ubuntu1) yakkety; urgency=medium
+
+  [ You-Sheng Yang ]
+  * Align to current upstart setup and run android container in the
+    background. (LP: #1625916)
+  * Add systemd upstart-local-bridge service (LP: #1627613)
+  * Add writable path for systemd. (LP: #1625445)
+  * Disable alsa-restore, alsa-state when lxc-android-config installed
+    (LP: #1626012)
+
+ -- Łukasz Zemczak <lukasz.zemczak@canonical.com>  Tue, 04 Oct 2016 08:15:25 +0000
+
 lxc-android-config (0.230+16.10.20160728-0ubuntu1) yakkety; urgency=medium
 
   * Update NM routing dispatcher script to fix emulator networking ( LP:
