@@ -1,0 +1,11 @@
+[Unit]
+Description=Bridge client socket name=value pairs into Upstart
+Before=lxc-android-config.service
+
+[Service]
+Type=forking
+ExecStartPre=/bin/mkdir -p /dev/socket
+ExecStart=/sbin/upstart-local-bridge --daemon --event=android-container --path=/dev/socket/upstart-text-bridge
+
+[Install]
+WantedBy=multi-user.target

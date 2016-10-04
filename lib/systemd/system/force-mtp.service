@@ -1,0 +1,10 @@
+[Unit]
+Requires=lxc-android-config.service
+After=lightdm.service lxc-android-config.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/android-gadget-service enable mtp
+
+[Install]
+WantedBy=multi-user.target
