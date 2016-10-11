@@ -1,3 +1,11 @@
+lxc-android-config (0.230+16.10.20161011-0ubuntu1) yakkety; urgency=medium
+
+  [ You-Sheng Yang ]
+  * Run upstart-local-bridge in the foreground to help adb shell
+    stability. (LP: #1632260)
+
+ -- Łukasz Zemczak <lukasz.zemczak@canonical.com>  Tue, 11 Oct 2016 10:23:23 +0000
+
 lxc-android-config (0.230+16.10.20161004-0ubuntu1) yakkety; urgency=medium
 
   [ You-Sheng Yang ]
