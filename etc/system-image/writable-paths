@@ -64,3 +64,6 @@
 /etc/init/whoopsie.override             auto                    persistent  transition  none
 # needed to persist ntp enabled/disabled
 /etc/network/if-up.d                    auto                    persistent  transition  none
+# snappy
+/snap                                   auto                    persistent  none        none
+/var/lib/snapd                          auto                    persistent  transition  none
