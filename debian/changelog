@@ -1,3 +1,10 @@
+lxc-android-config (0.230+16.10.20161014-0ubuntu1) yakkety; urgency=medium
+
+  [ You-Sheng Yang ]
+  * Add writable path for running snappy. (LP: #1632272)
+
+ -- Łukasz Zemczak <lukasz.zemczak@canonical.com>  Fri, 14 Oct 2016 08:29:42 +0000
+
 lxc-android-config (0.230+16.10.20161011-0ubuntu1) yakkety; urgency=medium
 
   [ You-Sheng Yang ]
