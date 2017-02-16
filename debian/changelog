@@ -1,3 +1,9 @@
+lxc-android-config (0.230+17.04.20170216-0ubuntu1) zesty; urgency=medium
+
+  * Remove media-hub.override, which is unneeded now.
+
+ -- Alfonso Sanchez-Beato <alfonso.sanchez-beato@canonical.com>  Thu, 16 Feb 2017 10:31:31 +0000
+
 lxc-android-config (0.230+16.10.20161014-0ubuntu1) yakkety; urgency=medium
 
   [ You-Sheng Yang ]
