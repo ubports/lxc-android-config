@@ -16,9 +16,10 @@ pipeline {
 export GIT_COMMIT=$(git rev-parse HEAD)
 export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 cd ..
+export KEEP_SOURCE_CHANGES=true
 /usr/bin/generate-git-snapshot
-dput ppa:ubports-developers/overlay *.sources
-'''
+dput ppa:ubports-developers/overlay *.changes
+rm *.changes'''
         stash(name: 'source', includes: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo,lintian.txt')
       }
     }
