@@ -5,6 +5,11 @@ export DPKG_GENSYMBOLS_CHECK_LEVEL=4
 %:
 	dh $@ --with systemd
 
+override_dh_auto_build:
+	mkdir -p var/lib/lxc-android-config/diversions
+	mkdir -p var/lib/lxc/android/overrides
+	mkdir -p var/lib/lxc/android/rootfs
+
 override_dh_installinit:
 	dh_installinit --noscripts
 	dh_installinit --name=lxc-android-boot --noscripts
