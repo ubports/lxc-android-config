@@ -4,11 +4,10 @@ script
     # normal setup
     # GPS provider
     opts="--provider gps::Provider"
-    # Remote provider (Ubuntu Espoo Service over DBus; wraps HERE positioning
-    # engine)
+    # Remote provider (Using geoclue2 positioning engine)
     opts="$opts --provider remote::Provider"
-    opts="$opts --remote::Provider::name=com.ubuntu.espoo.Service.Provider"
-    opts="$opts --remote::Provider::path=/com/ubuntu/espoo/Service/Provider"
+    opts="$opts --remote::Provider::name=com.wolfpack.geoclue2.Service.Provider"
+    opts="$opts --remote::Provider::path=/com/wolfpack/geoclue2/Service/Provider"
 
     # wait for Android properties system to be ready
     while [ ! -e /dev/socket/property_service ]; do sleep 0.1; done
