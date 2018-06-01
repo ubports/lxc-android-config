@@ -10,9 +10,9 @@
 /media                                  auto                    temporary   none        defaults
 /opt/click.ubuntu.com                   auto                    persistent  transition  none
 /tmp                                    none                    temporary   none        defaults
-/etc/cups				auto			persistent  none	none
-/var/spool/cups				auto			temporary   none	defaults
-/var/cache/cups				auto			temporary   none	defaults
+/etc/cups                               auto                    persistent  none        none
+/var/spool/cups                         auto                    persistent  none        none
+/var/cache/cups                         auto                    temporary   none        defaults
 /var/crash                              auto                    persistent  none        none
 /var/lib/AccountsService/users          auto                    persistent  none        none
 /var/lib/aethercast                     auto                    persistent  none        none
