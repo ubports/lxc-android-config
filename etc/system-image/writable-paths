@@ -22,6 +22,7 @@
 /var/lib/logrotate                      auto                    persistent  none        none
 /var/lib/NetworkManager                 auto                    persistent  none        none
 /var/lib/ofono                          auto                    persistent  none        none
+/var/lib/openvpn/chroot/tmp             auto                    temporary   none        defaults
 /var/lib/PackageKit                     auto                    persistent  none        none
 /var/lib/bluetooth                      auto                    persistent  none        none
 /var/lib/lightdm                        auto                    persistent  none        none
