@@ -192,4 +192,4 @@ ACTION=="add", KERNEL=="usb_accessory", OWNER="root", GROUP="usb", MODE="0660"
 ACTION=="add", KERNEL=="tun", OWNER="system", GROUP="vpn", MODE="0660"
 ACTION=="add", KERNEL=="ts0710mux*", OWNER="radio", GROUP="radio", MODE="0640"
 ACTION=="add", KERNEL=="ppp", OWNER="radio", GROUP="vpn", MODE="0660"
-ACTION=="add", KERNEL=="dvb*", OWNER="root", GROUP="system", MODE="0660
+ACTION=="add", KERNEL=="dvb*", OWNER="root", GROUP="system", MODE="0660"
