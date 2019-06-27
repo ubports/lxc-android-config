@@ -4,10 +4,8 @@ script
     # normal setup
     # GPS provider
     opts="--provider gps::Provider"
-    # Remote provider (Using geoclue2 positioning engine)
+    # Remote provider
     opts="$opts --provider remote::Provider"
-    opts="$opts --remote::Provider::name=com.wolfpack.geoclue2.Service.Provider"
-    opts="$opts --remote::Provider::path=/com/wolfpack/geoclue2/Service/Provider"
 
     # wait for Android properties system to be ready
     while [ ! -e /dev/socket/property_service ]; do sleep 0.1; done
