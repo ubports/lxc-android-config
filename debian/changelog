@@ -1,3 +1,9 @@
+lxc-android-config (0.233+ubports0) xenial; urgency=medium
+
+  * Starts udev before Android container and let ueventd do the coldplug.
+
+ -- Ratchanan Srirattanamet <peathot@hotmail.com>  Mon, 26 Aug 2019 14:55:13 +0700
+
 lxc-android-config (0.232+ubports0) xenial; urgency=medium
 
   * Disable QtWebEngine GPU
