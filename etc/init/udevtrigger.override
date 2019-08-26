@@ -1,0 +1,23 @@
+# udevtrigger - cold plug devices
+#
+# By the time udevd starts, we've already missed all of the events for
+# the devices populated in /sys.  This task causes the kernel to resend
+# them.
+
+# This version of udevtrigger job is updated to account the fact that
+# android's ueventd does its own "coldboot". To prevent double-coldbooting,
+# this task is changed to wait to "android" upstart event, which is guaranteed
+# to happen after ueventd's coldboot is done. Then, the only thing left to do
+# is to run "udevadm settle".
+
+description	"cold plug devices"
+
+start on (startup
+          and started udev
+          and android
+          and not-container)
+
+task
+
+exec /bin/true
+post-stop exec udevadm settle

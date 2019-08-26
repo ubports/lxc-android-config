@@ -4,7 +4,7 @@
 
 description "lxc android config and container initialization"
 
-start on cgmanager-ready and started cgroup-lite
+start on cgmanager-ready and started cgroup-lite and started udev
 stop on runlevel [06]
 
 pre-start script
