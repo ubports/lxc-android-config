@@ -1,3 +1,9 @@
+lxc-android-config (0.234+ubports0~gstdroid1) xenial; urgency=medium
+
+  * Specify droidcamsrc as source for Qt's gstcamerabin.
+
+ -- Ratchanan Srirattanamet <peathot@hotmail.com>  Fri, 30 Aug 2019 20:47:42 +0700
+
 lxc-android-config (0.233+ubports0) xenial; urgency=medium
 
   * Starts udev before Android container and let ueventd do the coldplug.
