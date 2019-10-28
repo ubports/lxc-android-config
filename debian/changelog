@@ -1,3 +1,10 @@
+lxc-android-config (0.234+ubports0~gstdroid2) xenial; urgency=medium
+
+  * Make the system loads the correct Qt plugin for camera
+  * Update debian/copyright to reflect current copyright status
+
+ -- Ratchanan Srirattanamet <ratchanan@ubports.com>  Mon, 28 Oct 2019 17:59:59 +0700
+
 lxc-android-config (0.234+ubports0~gstdroid1) xenial; urgency=medium
 
   * Specify droidcamsrc as source for Qt's gstcamerabin.
