@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 # Copyright (C) 2019 UBports foundation.
 # Author(s): Ratchanan Srirattanamet <ratchanan@ubports.com>
@@ -18,9 +18,30 @@
 # This script make sure that the system loads the correct Qt plugin
 # for camera, based on available Android library & Android version.
 
+# Determine the phone's architecture. This could also be done using dpkg-
+# architecture, but that's not available in the phone image.
+
+MULTIARCH_MAP="\
+armhf arm-linux-gnueabihf 32
+arm64 aarch64-linux-gnu 64
+i386 i386-linux-gnu 32
+amd64 x86_64-linux-gnu 64
+"
+
+HOST_DEBARCH="$(dpkg --print-architecture)"
+
+while read -r DEBARCH MULTIARCH BITS; do
+  if [ "$DEBARCH" = "$HOST_DEBARCH" ]; then
+    break
+  fi
+done <<< "$MULTIARCH_MAP" # bash-specific
+
+if [ "$DEBARCH" != "$HOST_DEBARCH" ]; then
+  echo "Cannot find multiarch triplet for \"$HOST_DEBARCH\". Update this script."
+  exit 1
+fi
+
 # Determine correct Android library path
-# FIXME: is this appropriate?
-BITS="$(dpkg-architecture -qDEB_BUILD_ARCH_BITS)"
 if [ "$BITS" = 32 ]; then
   ANDROID_LIB_PREFIX="/system/lib"
 else
@@ -30,7 +51,7 @@ fi
 GST_ANDROID_LIB="${ANDROID_LIB_PREFIX}/libdroidmedia.so"
 AAL_ANDROID_LIB="${ANDROID_LIB_PREFIX}/libcamera_compat_layer.so"
 
-UBUNTU_LIB_PREFIX="/usr/lib/$(dpkg-architecture -q DEB_BUILD_MULTIARCH)/qt5/plugins/mediaservice"
+UBUNTU_LIB_PREFIX="/usr/lib/${MULTIARCH}/qt5/plugins/mediaservice"
 GST_UBUNTU_LIB="${UBUNTU_LIB_PREFIX}/libgstcamerabin.so"
 AAL_UBUNTU_LIB="${UBUNTU_LIB_PREFIX}/libaalcamera.so"
 
