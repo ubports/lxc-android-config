@@ -14,7 +14,7 @@ pre-start script
     fi
 end script
 
-exec lxc-start -n android -d -- /init
+exec lxc-start -n android -F -- /init
 
 post-start script
     if [ ! -d /dev/cpuctl ] && [ -d /sys/fs/cgroup/cpu ]; then
