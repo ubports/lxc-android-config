@@ -4,7 +4,9 @@ Upstream-Contact:  Oliver Grawert <ogra@ubuntu.com>
 Source: lp:lxc-android-config
 
 Files: *
-Copyright: 2013 Canonical LTD.
+Copyright: 2013-2017 Canonical LTD.
+           2017-2019 Marius Gripsgard, Dalton Durst, Florian Leeber, Bjarne Roß, Rodney Dawes.
+           2019 UBports foundation.
 License: GPL-3
  This program is free software: you can redistribute it and/or modify it
  under the terms of the the GNU General Public License version 3, as
