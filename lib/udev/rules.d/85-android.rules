@@ -1,2 +1,0 @@
-# rfkill
-ACTION=="add", KERNEL=="rfkill", GROUP="android_input", MODE="0660"
