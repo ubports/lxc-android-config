@@ -69,3 +69,5 @@
 # snappy
 /snap                                   auto                    persistent  transition  none
 /var/lib/snapd                          auto                    persistent  transition  none
+# nfcd
+/var/lib/nfcd                           auto                    persistent  transition  none
