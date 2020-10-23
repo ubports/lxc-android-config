@@ -1,7 +1,5 @@
 [Unit]
 Description=LXC Android Config and Container Initialization
-Wants=upstart-local-bridge.service
-After=upstart-local-bridge.service
 
 [Service]
 Type=forking
