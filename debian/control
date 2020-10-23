@@ -13,8 +13,7 @@ Vcs-Bzr: lp:lxc-android-config
 Package: lxc-android-config
 Architecture: all
 Multi-Arch: foreign
-Depends: cgmanager,
-         debianutils,
+Depends: debianutils,
          lxc (>= 1.1.0~alpha2-0ubuntu1),
          ${misc:Depends},
 Breaks: powerd (<< 0.14-0ubuntu1),
