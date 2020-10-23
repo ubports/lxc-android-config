@@ -5,7 +5,7 @@
 
 description     "device node and kernel event manager"
 
-start on stopped lxc-android-boot
+start on filesystem
 stop on runlevel [06]
 
 expect fork

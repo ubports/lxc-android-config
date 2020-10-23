@@ -6,7 +6,6 @@ After=cgmanager.service upstart-local-bridge.service
 
 [Service]
 Type=forking
-ExecStartPre=/usr/lib/lxc-android-config/copy-udev-unflipped
 ExecStart=/usr/bin/lxc-start -n android -d -- /init
 ExecStartPost=/usr/lib/lxc-android-config/lxc-android-ready
 ExecStop=/usr/bin/lxc-stop -n android -k
