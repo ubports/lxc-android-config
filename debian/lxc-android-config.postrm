@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+if [ remove = "$1" ] || [ abort-install = "$1" ] || [ disappear = "$1" ] || \
+        ( [ abort-upgrade = "$1" ] && dpkg --compare-versions "$2" lt 1.1~ ); then
+    dpkg-divert --package smailwrapper --remove --rename \
+        --divert /lib/systemd/system/systemd-udev-trigger-real.service \
+        /lib/systemd/system/systemd-udev-trigger.service
+fi
+
+#DEBHELPER#

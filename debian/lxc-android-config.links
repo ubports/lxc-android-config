@@ -1,0 +1,2 @@
+/lib/systemd/system/systemd-udev-trigger.service /lib/systemd/system/systemd-udev-trigger-real.service.wants/systemd-udev-trigger.service
+/lib/systemd/system/lxc-android-config.service /lib/systemd/system/sysinit.target.wants/lxc-android-config.service

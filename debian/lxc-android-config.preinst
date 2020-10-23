@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+if [ upgrade != "$1" ] || dpkg --compare-versions "$2" lt 1.1~; then
+    dpkg-divert --package lxc-android-config --add --rename \
+        --divert /lib/systemd/system/systemd-udev-trigger-real.service \
+        /lib/systemd/system/systemd-udev-trigger.service
+fi
+
+#DEBHELPER#
