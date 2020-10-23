@@ -14,7 +14,7 @@ Package: lxc-android-config
 Architecture: all
 Multi-Arch: foreign
 Depends: debianutils,
-         lxc (>= 1.1.0~alpha2-0ubuntu1),
+         lxc (>= 2.1.0~),
          ${misc:Depends},
 Breaks: powerd (<< 0.14-0ubuntu1),
         ubuntu-touch-session (<< 0.107),
