@@ -1,3 +1,8 @@
+lxc-android-config (1.1) UNRELEASED; urgency=medium
+
+
+ -- Ratchanan Srirattanamet <ratchanan@ubports.com>  Sat, 24 Oct 2020 00:45:37 +0700
+
 lxc-android-config (0.233+ubports0) xenial; urgency=medium
 
   * Starts udev before Android container and let ueventd do the coldplug.
