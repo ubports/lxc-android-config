@@ -9,6 +9,9 @@ Before=systemd-udev-trigger.service sysinit.target
 # See our version of systemd-udev-trigger.service to see why.
 OnFailure=systemd-udev-trigger-real.service
 
+Conflicts=shutdown.target
+Before=shutdown.target
+
 [Service]
 Type=exec
 ExecStart=/usr/bin/lxc-start -n android -F -- /init
