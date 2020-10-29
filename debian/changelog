@@ -1,7 +1,8 @@
-lxc-android-config (1.1) UNRELEASED; urgency=medium
+lxc-android-config (1.1) focal; urgency=medium
 
+  * Make the Android container runs on Focal.
 
- -- Ratchanan Srirattanamet <ratchanan@ubports.com>  Sat, 24 Oct 2020 00:45:37 +0700
+ -- Ratchanan Srirattanamet <ratchanan@ubports.com>  Fri, 30 Oct 2020 01:45:25 +0700
 
 lxc-android-config (0.233+ubports0) xenial; urgency=medium
 
