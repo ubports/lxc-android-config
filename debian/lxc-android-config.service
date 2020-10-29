@@ -10,7 +10,7 @@ Before=systemd-udev-trigger.service sysinit.target
 OnFailure=systemd-udev-trigger-real.service
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/lxc-start -n android -d -- /init
+Type=exec
+ExecStart=/usr/bin/lxc-start -n android -F -- /init
 ExecStartPost=/usr/lib/lxc-android-config/lxc-android-ready
 ExecStop=/usr/bin/lxc-stop -n android -k
