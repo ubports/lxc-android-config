@@ -1,6 +1,27 @@
 #!/bin/sh -e
 
-lxc-wait -n android -s RUNNING -t 30
+# Workaround https://github.com/lxc/lxc/issues/3570
+# If lxc-wait fails with "Failed to receive state from monitor", re-try
+# up-to 10 times, 0.5 seconds apart.
+
+RETRY=10
+while ! err=$(lxc-wait -n android -s RUNNING -t 30 2>&1); do
+    echo "$err" >&2
+    if ! echo "$err"|grep -q 'Invalid argument - Failed to receive state from monitor'; then
+        exit 1
+    fi
+
+    RETRY=$(( RETRY - 1 ))
+
+    if [ $RETRY -le 0 ]; then
+        echo "LXC container doesn't become running in time, exitting..." >&2
+        exit 1
+    fi
+
+    echo "Workaround https://github.com/lxc/lxc/issues/3570, re-try up to ${RETRY} more time(s)." >&2
+    sleep 0.5
+done
+
 containerpid="$(lxc-info -n android -p -H)"
 if [ -n "$containerpid" ]; then
     while true; do
