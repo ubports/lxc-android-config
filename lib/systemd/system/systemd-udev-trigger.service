@@ -15,10 +15,10 @@
 [Unit]
 Description=udev Fake Coldplug all Devices
 DefaultDependencies=no
-After=lxc-android-container.service systemd-udev-trigger-real.service
+After=lxc-android-config.service systemd-udev-trigger-real.service
 Before=sysinit.target
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=sh -ec 'systemctl is-active lxc-android-container.service || systemctl is-active systemd-udev-trigger-real.service'
+ExecStart=sh -ec 'systemctl is-active lxc-android-config.service || systemctl is-active systemd-udev-trigger-real.service'
