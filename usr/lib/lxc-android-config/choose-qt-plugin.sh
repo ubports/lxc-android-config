@@ -81,10 +81,15 @@ if [ -z "$PLUGIN" ]; then
 fi
 
 if [ -z "$PLUGIN" ]; then
+  # Well, it's a bit complicated. Initially Halium 7 and up doesn't have the
+  # required patch for video recording with audio on aal plugin. But then
+  # Nikita (@NotKit) comes in and forward-port the patch for Halium 9, so now
+  # only Halium 7 doesn't have the patch. Also, there's a problem with 64-bit
+  # devices using droidmedia that prevents video recording completely. Although
+  # on aal plugin video recording it can completely freeze too, so it's better
+  # to fix the future then try to fix the past.
   ANDROID_MAJOR="$(getprop ro.build.version.release|cut -f1 -d'.')"
-  if [ "$ANDROID_MAJOR" -ge 7 ]; then
-    # We prefer gst-droid on Android 7 and up because Halium 7
-    # doesn't have the patch required for audio in video recording.
+  if [ "$ANDROID_MAJOR" = 7 ]; then
     PLUGIN="gst"
   else
     PLUGIN="aal"
